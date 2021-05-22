@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Taviraj&display=swap");
+
+.task {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task__label {
+  display: flex;
+  align-items: center;
+}
+
+.task__checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.task__checkbox:hover {
+  cursor: pointer;
+  background-color: rgb(255, 255, 241);
+}
+
+.task__text {
+  padding-left: 1rem;
+}
+
+.task__delete-button {
+  background-color: red;
+  width: 2.5rem;
+  margin-right: 0.625rem;
+}

@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.header__icon {
+  max-width: 50px;
+  max-height: 50px;
+  padding-left: 10px;
+  transform: rotate(20deg);
+}
