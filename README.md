@@ -1,8 +1,10 @@
 ## Hello Digitalent
 
-Tasks are saved to a real-time cloud database.
-Try opening the app in two different windows or devices.
-Any changes made will be automatically updated to all sessions in real time.
+- Tasks are saved to a real-time cloud database.
+- Try opening the app in two different windows or devices.
+- Any changes made will be automatically updated to all sessions in real time.
+
+[Live app](https://todo-digitalent.web.app/)
 
 ## Available Scripts
 
