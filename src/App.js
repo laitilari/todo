@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import fire from "./fire";
 import Header from "./components/Header";
@@ -6,9 +6,11 @@ import TaskInput from "./components/TaskInput";
 import TaskItem from "./components/TaskItem";
 import { TaskList } from "./components/TaskList";
 import icon from "./icon.png";
+import { uid } from "uid";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+  const [taskInputValue, setTaskInputValue] = useState("");
 
   useEffect(() => {
     let tasksInDB = fire.database().ref("tasks");
@@ -28,20 +30,27 @@ const App = () => {
 
     tasksInDB.on("child_changed", (changedTask) => {
       setTasks((tasks) =>
-        tasks.map((el) => (el.id === changedTask.key ? changedTask.val() : el))
+        tasks.map((task) =>
+          task.id === changedTask.key ? changedTask.val() : task
+        )
       );
     });
   }, []);
 
-  const deleteTask = (id) => {
-    fire.database().ref(`tasks/${id}`).remove();
+  const addTask = () => {
+    const taskId = uid();
+    fire.database().ref(`tasks/${taskId}`).set({
+      text: taskInputValue,
+      id: taskId,
+      checked: false,
+    });
+    setTaskInputValue("");
   };
 
-  const editTask = (id, checked) => {
-    fire.database().ref(`tasks/${id}`).update({
-      checked: !checked,
-    });
-  };
+  const removeTask = (id) => fire.database().ref(`tasks/${id}`).remove();
+
+  const editTask = (id, checked) =>
+    fire.database().ref(`tasks/${id}`).update({ checked: !checked });
 
   const taskElements = tasks.map((task) => {
     return (
@@ -50,8 +59,8 @@ const App = () => {
         id={task.id}
         text={task.text}
         checked={task.checked}
-        remove={() => deleteTask(task.id)}
-        edit={() => editTask(task.id, task.checked)}
+        remove={removeTask}
+        edit={editTask}
       />
     );
   });
@@ -59,7 +68,11 @@ const App = () => {
   return (
     <div className="app">
       <Header text="Digitalent ToDo" icon={icon} />
-      <TaskInput />
+      <TaskInput
+        taskInputValue={taskInputValue}
+        setTaskInputValue={setTaskInputValue}
+        addTask={addTask}
+      />
       <TaskList tasks={taskElements} />
     </div>
   );
