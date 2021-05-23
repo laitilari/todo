@@ -3,6 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const TaskInput = ({ taskInputValue, setTaskInputValue, addTask }) => {
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addTask();
+    }
+  };
+
   return (
     <div>
       <form>
@@ -11,6 +18,7 @@ const TaskInput = ({ taskInputValue, setTaskInputValue, addTask }) => {
           placeholder="Add a task"
           value={taskInputValue}
           onChange={(e) => setTaskInputValue(e.target.value)}
+          onKeyDown={(e) => handleEnter(e)}
         />
         <button
           className="task-input__button"
