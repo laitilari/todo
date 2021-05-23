@@ -6,8 +6,8 @@
 }
 
 .header__icon {
-  max-width: 50px;
-  max-height: 50px;
-  padding-left: 10px;
+  max-width: 3.125rem;
+  max-height: 3.125rem;
+  padding-left: 0.625rem;
   transform: rotate(20deg);
 }
