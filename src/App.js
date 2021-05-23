@@ -24,17 +24,17 @@ const App = () => {
       setTasks((tasks) => [...tasks, task]);
     });
 
-    tasksInDB.on("child_removed", (removedTask) => {
-      setTasks((tasks) => tasks.filter((task) => task.id !== removedTask.key));
-    });
+    tasksInDB.on("child_removed", (removedTask) =>
+      setTasks((tasks) => tasks.filter((task) => task.id !== removedTask.key))
+    );
 
-    tasksInDB.on("child_changed", (changedTask) => {
+    tasksInDB.on("child_changed", (changedTask) =>
       setTasks((tasks) =>
         tasks.map((task) =>
           task.id === changedTask.key ? changedTask.val() : task
         )
-      );
-    });
+      )
+    );
   }, []);
 
   const addTask = () => {
