@@ -18,7 +18,7 @@ const TaskInput = ({ taskInputValue, setTaskInputValue, addTask }) => {
           placeholder="Add a task"
           value={taskInputValue}
           onChange={(e) => setTaskInputValue(e.target.value)}
-          onKeyDown={(e) => handleEnter(e)}
+          onKeyDown={handleEnter}
         />
         <button
           className="task-input__button"
