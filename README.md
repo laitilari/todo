@@ -1,4 +1,4 @@
-## Hello Digitalent
+## Todo
 
 - Tasks are saved to a real-time cloud database.
 - Try opening the app in two different windows or devices simultaneously.
